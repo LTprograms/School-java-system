@@ -73,7 +73,7 @@ public class ConsultarAlumnos extends JFrame {
 		btnEliminar.setBounds(335, 48, 89, 23);
 		contentPane.add(btnEliminar);
 		
-		JLabel lblNewLabel = new JLabel("Codigo: ");
+		JLabel lblNewLabel = new JLabel("DNI:");
 		lblNewLabel.setBounds(34, 52, 46, 14);
 		contentPane.add(lblNewLabel);
 		

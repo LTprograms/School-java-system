@@ -9,6 +9,8 @@ import javax.swing.table.DefaultTableModel;
 
 import model.Alumno;
 import model.Curso;
+import model.Matricula;
+import model.Retiro;
 import view.AddCurso;
 import view.ConsultarAlumnos;
 
@@ -16,26 +18,45 @@ public class ConsultarAlumnosController {
 	ConsultarAlumnos view;
 	ArrayList<Alumno> listaAlumnos;
 	ArrayList<Curso> listaCursos;
-	public ConsultarAlumnosController(ArrayList<Alumno> alumnos, ArrayList<Curso> cursos) {
+	ArrayList<Matricula> listaMatriculas;
+	ArrayList<Retiro> listaRetiros;
+	public ConsultarAlumnosController(ArrayList<Alumno> alumnos, ArrayList<Curso> cursos, ArrayList<Matricula> matriculas, ArrayList<Retiro> retiros) {
 		view = new ConsultarAlumnos();
 		this.listaAlumnos = alumnos;
 		this.listaCursos= cursos;
+		this.listaMatriculas = matriculas;
+		this.listaRetiros = retiros;
 		fillTable();
-		/*this.view.btnRegistrar.addActionListener( new ActionListener() {
+		this.view.btnEliminar.addActionListener( new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
+				String dni = view.txtCod.getText();
+				Alumno a = getAlumno(dni);
+				if (a != null) {
+					if (a.getEstado() == 0) {
+						if (JOptionPane.showConfirmDialog(view, "¿Deseas eliminar este alumno?")==JOptionPane.YES_OPTION) {
+							deleteAlumno(a);
+							ConsultarAlumnosController fr = new ConsultarAlumnosController(listaAlumnos, listaCursos, listaMatriculas, listaRetiros);
+							view.dispose();
+							fr.run();
+						}						
+					} else {
+						JOptionPane.showMessageDialog(view, "No se puede eliminar este alumno");						
+					}
+				} else {
+					JOptionPane.showMessageDialog(view, "El alumno no existe");
+				}
 			}
             
-        });*/
+        });
 		this.view.addAlumno.addActionListener( new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				AddAlumnoController fr = new AddAlumnoController(listaAlumnos, listaCursos);
+				AddAlumnoController fr = new AddAlumnoController(listaAlumnos, listaCursos, listaMatriculas, listaRetiros);
 				view.dispose();
 				fr.run();
 			}
@@ -46,7 +67,7 @@ public class ConsultarAlumnosController {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				AddCursoController fr = new AddCursoController(listaAlumnos, listaCursos);
+				AddCursoController fr = new AddCursoController(listaAlumnos, listaCursos, listaMatriculas, listaRetiros);
 				view.dispose();
 				fr.run();
 			}
@@ -57,7 +78,7 @@ public class ConsultarAlumnosController {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				ConsultarAlumnosController fr = new ConsultarAlumnosController(listaAlumnos, listaCursos);
+				ConsultarAlumnosController fr = new ConsultarAlumnosController(listaAlumnos, listaCursos, listaMatriculas, listaRetiros);
 				view.dispose();
 				fr.run();
 			}
@@ -68,7 +89,7 @@ public class ConsultarAlumnosController {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				ConsultarCursoController fr = new ConsultarCursoController(listaAlumnos, listaCursos);
+				ConsultarCursoController fr = new ConsultarCursoController(listaAlumnos, listaCursos, listaMatriculas, listaRetiros);
 				view.dispose();
 				fr.run();
 			}
@@ -92,5 +113,23 @@ public class ConsultarAlumnosController {
         	model.addRow(new Object[] {a.getCodAlumno(), a.getDni(), a.getApellidos(), a.getNombres(), a.getEdad(), a.getCelular(), a.getEstado()});
         }
         this.view.table.setModel(model);
+	}
+	private Alumno getAlumno(String dni) {
+		for (Alumno a : listaAlumnos) {
+			if (a.getDni().equals(dni)) {
+				return a;
+			}
+		}
+		return null;
+	}
+	private void deleteAlumno (Alumno a) {
+		int index = 0;
+		for (Alumno alumno : listaAlumnos) {
+			if (a.getDni().equals(alumno.getDni())) {
+				break;
+			}
+			index++;
+		}
+		listaAlumnos.remove(index);
 	}
 }

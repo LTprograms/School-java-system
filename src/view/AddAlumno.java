@@ -31,6 +31,11 @@ public class AddAlumno extends JFrame {
 	public JMenuItem addCurso;
 	public JMenuItem updateAlumno;
 	public JMenuItem updateCurso;
+	
+	public JMenuItem addMatricula;
+	public JMenuItem addRetiro;
+	public JMenuItem updateMatricula;
+	public JMenuItem updateRetiro;
 
 	/**
 	 * Launch the application.
@@ -149,8 +154,26 @@ public class AddAlumno extends JFrame {
 		updateCurso = new JMenuItem("Curso");
 		mnNewMenu_3.add(updateCurso);
 		
-		JMenu mnNewMenu_1 = new JMenu("Registro");
-		menuBar.add(mnNewMenu_1);
+		JMenu mnRegistro = new JMenu("Registro");
+		menuBar.add(mnRegistro);
+		
+		JMenu mnNewMenu_31 = new JMenu("Adicionar");
+		mnRegistro.add(mnNewMenu_31);
+		
+		addMatricula = new JMenuItem("Matricula");
+		mnNewMenu_3.add(addMatricula);
+		
+		addRetiro = new JMenuItem("Retiro");
+		mnNewMenu_3.add(addRetiro);
+		
+		JMenu mnNewMenu_3_1 = new JMenu("Consultar");
+		mnRegistro.add(mnNewMenu_3_1);
+		
+		updateMatricula = new JMenuItem("Matricula");
+		mnNewMenu_3_1.add(updateMatricula);
+		
+		updateRetiro = new JMenuItem("Retiro");
+		mnNewMenu_3_1.add(updateRetiro);
 		
 	}
 }

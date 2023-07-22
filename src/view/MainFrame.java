@@ -30,6 +30,11 @@ public class MainFrame extends JFrame {
 	public JMenuItem updateAlumno;
 	public JMenuItem updateCurso;
 	
+	public JMenuItem addMatricula;
+	public JMenuItem addRetiro;
+	public JMenuItem updateMatricula;
+	public JMenuItem updateRetiro;
+	
 
 	/**
 	 * Launch the application.
@@ -122,7 +127,7 @@ public class MainFrame extends JFrame {
 		contentPane.add(lblNewLabel_1_2_1);
 		
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 194, 22);
+		menuBar.setBounds(0, 0, 434, 22);
 		contentPane.add(menuBar);
 		
 		JMenu mnNewMenu = new JMenu("Mantenimiento");
@@ -137,7 +142,7 @@ public class MainFrame extends JFrame {
 		addCurso = new JMenuItem("Curso");
 		mnNewMenu_1.add(addCurso);
 		
-		JMenu mnNewMenu_2 = new JMenu("Modificar");
+		JMenu mnNewMenu_2 = new JMenu("Consultar");
 		mnNewMenu.add(mnNewMenu_2);
 		
 		updateAlumno = new JMenuItem("Alumno");
@@ -149,40 +154,22 @@ public class MainFrame extends JFrame {
 		JMenu mnRegistro = new JMenu("Registro");
 		menuBar.add(mnRegistro);
 		
-		JMenu mnNewMenu_1_1 = new JMenu("Adicionar");
-		mnRegistro.add(mnNewMenu_1_1);
+		JMenu mnNewMenu_3 = new JMenu("Adicionar");
+		mnRegistro.add(mnNewMenu_3);
 		
-		JMenuItem mntmMatricula = new JMenuItem("Retiro");
-		mnNewMenu_1_1.add(mntmMatricula);
+		addMatricula = new JMenuItem("Matricula");
+		mnNewMenu_3.add(addMatricula);
 		
-		JMenuItem mntmNewMenuItem_1_1 = new JMenuItem("Curso");
-		mnNewMenu_1_1.add(mntmNewMenuItem_1_1);
-		
-		JMenu mnNewMenu_2_1 = new JMenu("Modificar");
-		mnRegistro.add(mnNewMenu_2_1);
-		
-		JMenuItem mntmNewMenuItem_2_1 = new JMenuItem("Matricula");
-		mnNewMenu_2_1.add(mntmNewMenuItem_2_1);
-		
-		JMenuItem mntmNewMenuItem_3_1 = new JMenuItem("Retiro");
-		mnNewMenu_2_1.add(mntmNewMenuItem_3_1);
+		addRetiro = new JMenuItem("Retiro");
+		mnNewMenu_3.add(addRetiro);
 		
 		JMenu mnNewMenu_3_1 = new JMenu("Consultar");
 		mnRegistro.add(mnNewMenu_3_1);
 		
-		JMenuItem mntmNewMenuItem_4_1 = new JMenuItem("Matricula");
-		mnNewMenu_3_1.add(mntmNewMenuItem_4_1);
+		updateMatricula = new JMenuItem("Matricula");
+		mnNewMenu_3_1.add(updateMatricula);
 		
-		JMenuItem mntmNewMenuItem_5_1 = new JMenuItem("Retiro");
-		mnNewMenu_3_1.add(mntmNewMenuItem_5_1);
-		
-		JMenu mnNewMenu_4_1 = new JMenu("Eliminar");
-		mnRegistro.add(mnNewMenu_4_1);
-		
-		JMenuItem mntmNewMenuItem_6_1 = new JMenuItem("Matricula");
-		mnNewMenu_4_1.add(mntmNewMenuItem_6_1);
-		
-		JMenuItem mntmNewMenuItem_7_1 = new JMenuItem("Retiro");
-		mnNewMenu_4_1.add(mntmNewMenuItem_7_1);
+		updateRetiro = new JMenuItem("Retiro");
+		mnNewMenu_3_1.add(updateRetiro);
 	}
 }

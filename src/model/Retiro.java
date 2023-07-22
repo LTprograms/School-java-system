@@ -5,11 +5,18 @@ public class Retiro {
 	private int numMatricula;
 	private String fecha;
 	private String hora;
+	public static int index = 1;
 	public Retiro(int numRetiro, int numMatricula, String fecha, String hora) {
 		this.numRetiro = numRetiro;
 		this.numMatricula = numMatricula;
 		this.fecha = fecha;
 		this.hora = hora;
+	}
+	public static int getIndex() {
+		return index;
+	}
+	public static void setIndex() {
+		index++;
 	}
 	// getters
 	public int getNumRetiro() {

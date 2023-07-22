@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import controller.MainController;
 import model.Alumno;
 import model.Curso;
+import model.Matricula;
+import model.Retiro;
 /**
  * 
  */
@@ -18,6 +20,8 @@ public class App {
 		// TODO Auto-generated method stub
 		ArrayList <Alumno> listaAlumnos = new ArrayList<>();
 		ArrayList <Curso> listaCursos = new ArrayList<>();
+		ArrayList <Matricula> listaMatriculas = new ArrayList<>();
+		ArrayList <Retiro> listaRetiros = new ArrayList<>();
 		// add alumnos
 		listaAlumnos.add(new Alumno(20231001, "Luis", "La Torre", "72682166", 20, 922345683, 0));
 		listaAlumnos.add(new Alumno(20231002, "María", "Gómez", "73891234", 22, 911234567, 1));
@@ -41,7 +45,7 @@ public class App {
 		listaCursos.add(new Curso(1008, "Química", 2, 4, 6));
 		listaCursos.add(new Curso(1009, "Economía", 4, 3, 5));
 
-		MainController controller = new MainController(listaAlumnos, listaCursos);
+		MainController controller = new MainController(listaAlumnos, listaCursos, listaMatriculas, listaRetiros);
 		controller.run();
 	}
 

@@ -8,16 +8,22 @@ import javax.swing.table.DefaultTableModel;
 
 import model.Alumno;
 import model.Curso;
+import model.Matricula;
+import model.Retiro;
 import view.ConsultarCurso;
 
 public class ConsultarCursoController {
 	ConsultarCurso view;
 	ArrayList<Alumno> listaAlumnos;
 	ArrayList<Curso> listaCursos;
-	public ConsultarCursoController(ArrayList<Alumno> alumnos, ArrayList<Curso> cursos) {
+	ArrayList<Matricula> listaMatriculas;
+	ArrayList<Retiro> listaRetiros;
+	public ConsultarCursoController(ArrayList<Alumno> alumnos, ArrayList<Curso> cursos, ArrayList<Matricula> matriculas, ArrayList<Retiro> retiros) {
 		view = new ConsultarCurso();
 		this.listaAlumnos = alumnos;
 		this.listaCursos= cursos;
+		this.listaMatriculas = matriculas;
+		this.listaRetiros = retiros;
 		fillTable();
 		/*this.view.btnRegistrar.addActionListener( new ActionListener() {
 
@@ -33,7 +39,7 @@ public class ConsultarCursoController {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				AddAlumnoController fr = new AddAlumnoController(listaAlumnos, listaCursos);
+				AddAlumnoController fr = new AddAlumnoController(listaAlumnos, listaCursos, listaMatriculas, listaRetiros);
 				view.dispose();
 				fr.run();
 			}
@@ -44,7 +50,7 @@ public class ConsultarCursoController {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				AddCursoController fr = new AddCursoController(listaAlumnos, listaCursos);
+				AddCursoController fr = new AddCursoController(listaAlumnos, listaCursos, listaMatriculas, listaRetiros);
 				view.dispose();
 				fr.run();
 			}
@@ -55,7 +61,7 @@ public class ConsultarCursoController {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				ConsultarAlumnosController fr = new ConsultarAlumnosController(listaAlumnos, listaCursos);
+				ConsultarAlumnosController fr = new ConsultarAlumnosController(listaAlumnos, listaCursos, listaMatriculas, listaRetiros);
 				view.dispose();
 				fr.run();
 			}
@@ -66,7 +72,7 @@ public class ConsultarCursoController {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				ConsultarCursoController fr = new ConsultarCursoController(listaAlumnos, listaCursos);
+				ConsultarCursoController fr = new ConsultarCursoController(listaAlumnos, listaCursos, listaMatriculas, listaRetiros);
 				view.dispose();
 				fr.run();
 			}

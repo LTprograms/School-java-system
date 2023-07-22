@@ -6,6 +6,7 @@ public class Matricula {
 	private int codCurso;	
 	private String fecha;
 	private String hora;
+	private static int index = 1;
 	public Matricula(int numMatricula, int codAlumno, int codCurso, String fecha, String hora) {
 		this.numMatricula = numMatricula;
 		this.codAlumno = codAlumno;
@@ -14,6 +15,12 @@ public class Matricula {
 		this.hora = hora;
 	}
 	// getters
+	public static int getIndex() {
+		return index;
+	}
+	public static void setIndex() {
+		index++;
+	}
 	public int getNumMatricula() {
 		return numMatricula;
 	}
