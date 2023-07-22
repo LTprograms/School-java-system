@@ -4,41 +4,30 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 import model.Alumno;
 import model.Curso;
-import view.AddCurso;
+import view.ConsultarCurso;
 
-public class AddCursoController {
-	AddCurso view;
+public class ConsultarCursoController {
+	ConsultarCurso view;
 	ArrayList<Alumno> listaAlumnos;
 	ArrayList<Curso> listaCursos;
-	public AddCursoController(ArrayList<Alumno> alumnos, ArrayList<Curso> cursos) {
-		view = new AddCurso();
+	public ConsultarCursoController(ArrayList<Alumno> alumnos, ArrayList<Curso> cursos) {
+		view = new ConsultarCurso();
 		this.listaAlumnos = alumnos;
 		this.listaCursos= cursos;
-		this.view.btnRegistrar.addActionListener( new ActionListener() {
+		fillTable();
+		/*this.view.btnRegistrar.addActionListener( new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-					Curso curso = getCurso();
-					if (curso != null) {
-						if (addCurso(curso)) {
-							JOptionPane.showMessageDialog(view, "Curso registrado con exito");
-							AddCursoController fr = new AddCursoController(listaAlumnos, listaCursos);
-							view.dispose();
-							fr.run();
-						} else {
-							JOptionPane.showMessageDialog(view, "Curso ya registrado anteriormente");							
-						}
-					} else {
-						JOptionPane.showMessageDialog(view, "LLena todos los campos");													
-					}
+				
 			}
             
-        });
+        });*/
 		this.view.addAlumno.addActionListener( new ActionListener() {
 
 			@Override
@@ -88,23 +77,16 @@ public class AddCursoController {
 		this.view.setLocationRelativeTo(null);
         this.view.setVisible(true);
 	}
-	
-	private boolean addCurso(Curso curso) {
-		for (Curso c : this.listaCursos) {
-			if (c.getCodCurso() == curso.getCodCurso()) {
-				return false;
-			}
-		}
-		this.listaCursos.add(curso);
-		return true;
-	}
-	
-	private Curso getCurso() {
-		int cod = Integer.parseInt(this.view.txtCode.getText());
-		String asignatura = this.view.txtAsignatura.getText();
-		int ciclo = Integer.parseInt(this.view.txtCiclo.getText());
-		int creditos = Integer.parseInt(this.view.txtCreditos.getText());
-		int horas = Integer.parseInt(this.view.txtHoras.getText());
-		return new Curso(cod, asignatura, ciclo, creditos, horas);
+	private void  fillTable() {
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Codigo");
+        model.addColumn("Asignatura");
+        model.addColumn("Ciclo");
+        model.addColumn("Creditos");
+        model.addColumn("Horas");
+        for (Curso c : this.listaCursos) {
+        	model.addRow(new Object[] {c.getCodCurso(), c.getAsignatura(), c.getCiclo(), c.getCreditos(), c.getHoras()});
+        }
+        this.view.table.setModel(model);
 	}
 }

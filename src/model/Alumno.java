@@ -8,7 +8,7 @@ public class Alumno {
 	private int edad;
 	private int celular;
 	private int estado;
-	private static int index = 0;
+	private static int index = 11;
 	public Alumno(int codAlumno, String nombres, String apellidos, String dni, int edad, int celular, int estado) {
 		this.codAlumno = codAlumno;
 		this.nombres = nombres;
@@ -19,8 +19,10 @@ public class Alumno {
 		this.estado = estado;
 	}
 	public static int getIndex() {
-		Alumno.index++;
 		return Alumno.index;
+	}
+	public static void setIndex() {
+		index++;
 	}
 	// getters
 	public int getCodAlumno() {

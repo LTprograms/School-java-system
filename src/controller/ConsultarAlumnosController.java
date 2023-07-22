@@ -5,38 +5,39 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 import model.Alumno;
 import model.Curso;
-import view.AddAlumno;
+import view.AddCurso;
+import view.ConsultarAlumnos;
 
-public class AddAlumnoController {
-	AddAlumno view;
+public class ConsultarAlumnosController {
+	ConsultarAlumnos view;
 	ArrayList<Alumno> listaAlumnos;
 	ArrayList<Curso> listaCursos;
-	public AddAlumnoController(ArrayList<Alumno> alumnos, ArrayList<Curso> cursos) {
-		view = new AddAlumno();
+	public ConsultarAlumnosController(ArrayList<Alumno> alumnos, ArrayList<Curso> cursos) {
+		view = new ConsultarAlumnos();
 		this.listaAlumnos = alumnos;
 		this.listaCursos= cursos;
-		this.view.btnRegistrar.addActionListener( new ActionListener() {
+		fillTable();
+		/*this.view.btnRegistrar.addActionListener( new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				Alumno a = getAlumno();
-				if (a!=null) {
-					if (addAlumno(a)) {
-						JOptionPane.showMessageDialog(view, "Alumno añadido con exito");						
-						Alumno.setIndex();
-						AddAlumnoController fr = new AddAlumnoController(listaAlumnos, listaCursos);
-						view.dispose();
-						fr.run();
-					} else {
-						JOptionPane.showMessageDialog(view, "El alumno ya existe");						
-					}
-				} else {
-					JOptionPane.showMessageDialog(view, "Llena todos los campos");											
-				}
+				
+			}
+            
+        });*/
+		this.view.addAlumno.addActionListener( new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				AddAlumnoController fr = new AddAlumnoController(listaAlumnos, listaCursos);
+				view.dispose();
+				fr.run();
 			}
             
         });
@@ -78,26 +79,18 @@ public class AddAlumnoController {
 		this.view.setLocationRelativeTo(null);
         this.view.setVisible(true);
 	}
-	private boolean addAlumno(Alumno a) {
-		for (Alumno alumno : this.listaAlumnos) {
-			if (alumno.getDni().equals(a.getDni())) {
-				return false;
-			}
-		}
-		this.listaAlumnos.add(a);
-		return true;
-	}
-	private Alumno getAlumno() {
-		int cod = Integer.parseInt(this.view.lblCode.getText());
-		String nombres = this.view.txtNombre.getText();
-		String apellidos = this.view.txtApellido.getText();
-		int edad = Integer.parseInt(this.view.txtEdad.getText());
-		String dni = this.view.txtDni.getText();
-		int celular = Integer.parseInt(this.view.txtCelular.getText());
-		int estado = 0;
-		if (nombres.equals("") || apellidos.equals("") || dni.length()!=8) {
-			return null;
-		}
-		return new Alumno(cod, nombres, apellidos, dni, edad, celular, estado);
+	private void  fillTable() {
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Codigo");
+        model.addColumn("DNI");
+        model.addColumn("Apellidos");
+        model.addColumn("Nombres");
+        model.addColumn("Edad");
+        model.addColumn("Celular");
+        model.addColumn("Estado");
+        for (Alumno a : this.listaAlumnos) {
+        	model.addRow(new Object[] {a.getCodAlumno(), a.getDni(), a.getApellidos(), a.getNombres(), a.getEdad(), a.getCelular(), a.getEstado()});
+        }
+        this.view.table.setModel(model);
 	}
 }

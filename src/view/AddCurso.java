@@ -9,6 +9,9 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 
 public class AddCurso extends JFrame {
 
@@ -19,6 +22,15 @@ public class AddCurso extends JFrame {
 	public JTextField txtCreditos;
 	public JTextField txtHoras;
 	public JButton btnRegistrar; 
+	private JMenuBar menuBar;
+	private JMenu mnNewMenu;
+	private JMenu mnNewMenu_1;
+	private JMenu mnNewMenu_2;
+	private JMenu mnNewMenu_3;
+	public JMenuItem addAlumno;
+	public JMenuItem addCurso;
+	public JMenuItem updateAlumno;
+	public JMenuItem updateCurso;
 	/**
 	 * Launch the application.
 	 */
@@ -100,6 +112,34 @@ public class AddCurso extends JFrame {
 		btnRegistrar = new JButton("Registrar");
 		btnRegistrar.setBounds(277, 154, 89, 23);
 		contentPane.add(btnRegistrar);
+		
+		menuBar = new JMenuBar();
+		menuBar.setBounds(0, 0, 434, 22);
+		contentPane.add(menuBar);
+		
+		mnNewMenu = new JMenu("Mantenimiento");
+		menuBar.add(mnNewMenu);
+		
+		mnNewMenu_2 = new JMenu("Adicionar");
+		mnNewMenu.add(mnNewMenu_2);
+		
+		addAlumno = new JMenuItem("Alumno");
+		mnNewMenu_2.add(addAlumno);
+		
+		addCurso = new JMenuItem("Curso");
+		mnNewMenu_2.add(addCurso);
+		
+		mnNewMenu_3 = new JMenu("Consultar");
+		mnNewMenu.add(mnNewMenu_3);
+		
+		updateAlumno = new JMenuItem("Alumno");
+		mnNewMenu_3.add(updateAlumno);
+		
+		updateCurso = new JMenuItem("Curso");
+		mnNewMenu_3.add(updateCurso);
+		
+		mnNewMenu_1 = new JMenu("Registro");
+		menuBar.add(mnNewMenu_1);
 	}
 
 }

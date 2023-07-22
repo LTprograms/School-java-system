@@ -29,10 +29,6 @@ public class MainFrame extends JFrame {
 	public JMenuItem addCurso;
 	public JMenuItem updateAlumno;
 	public JMenuItem updateCurso;
-	public JMenuItem consultarAlumno;
-	public JMenuItem consultarCurso;
-	public JMenuItem eliminarAlumno;
-	public JMenuItem eliminarCurso;
 	
 
 	/**
@@ -149,24 +145,6 @@ public class MainFrame extends JFrame {
 		
 		updateCurso = new JMenuItem("Curso");
 		mnNewMenu_2.add(updateCurso);
-		
-		JMenu mnNewMenu_3 = new JMenu("Consultar");
-		mnNewMenu.add(mnNewMenu_3);
-		
-		consultarAlumno = new JMenuItem("Alumno");
-		mnNewMenu_3.add(consultarAlumno);
-		
-		consultarCurso = new JMenuItem("Curso");
-		mnNewMenu_3.add(consultarCurso);
-		
-		JMenu mnNewMenu_4 = new JMenu("Eliminar");
-		mnNewMenu.add(mnNewMenu_4);
-		
-		eliminarAlumno = new JMenuItem("Alumno");
-		mnNewMenu_4.add(eliminarAlumno);
-		
-		eliminarCurso = new JMenuItem("Curso");
-		mnNewMenu_4.add(eliminarCurso);
 		
 		JMenu mnRegistro = new JMenu("Registro");
 		menuBar.add(mnRegistro);
