@@ -31,11 +31,10 @@ public class AddAlumno extends JFrame {
 	public JMenuItem addCurso;
 	public JMenuItem updateAlumno;
 	public JMenuItem updateCurso;
-	
-	public JMenuItem addMatricula;
-	public JMenuItem addRetiro;
 	public JMenuItem updateMatricula;
 	public JMenuItem updateRetiro;
+	public JMenuItem addMatricula;
+	public JMenuItem addRetiro;
 
 	/**
 	 * Launch the application.
@@ -161,10 +160,10 @@ public class AddAlumno extends JFrame {
 		mnRegistro.add(mnNewMenu_31);
 		
 		addMatricula = new JMenuItem("Matricula");
-		mnNewMenu_3.add(addMatricula);
+		mnNewMenu_31.add(addMatricula);
 		
 		addRetiro = new JMenuItem("Retiro");
-		mnNewMenu_3.add(addRetiro);
+		mnNewMenu_31.add(addRetiro);
 		
 		JMenu mnNewMenu_3_1 = new JMenu("Consultar");
 		mnRegistro.add(mnNewMenu_3_1);

@@ -85,6 +85,22 @@ public class MainController {
 				fr.run();
 			}           
         });
+		this.view.addRetiro.addActionListener( new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}           
+		});
+		this.view.updateRetiro.addActionListener( new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}           
+		});
 	}
 	public void run() {
 		this.view.setLocationRelativeTo(null);

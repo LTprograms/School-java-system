@@ -11,15 +11,16 @@ import model.Curso;
 import model.Matricula;
 import model.Retiro;
 import view.AddMatricula;
+import view.AddRetiro;
 
-public class AddMatriculaController {
-	AddMatricula view;
+public class AddRetiroController {
+	AddRetiro view;
 	ArrayList<Alumno> listaAlumnos;
 	ArrayList<Curso> listaCursos;
 	ArrayList<Matricula> listaMatriculas;
 	ArrayList<Retiro> listaRetiros;
-	public AddMatriculaController(ArrayList<Alumno> alumnos, ArrayList<Curso> cursos, ArrayList<Matricula> matriculas, ArrayList<Retiro> retiros) {
-		view = new AddMatricula();
+	public AddRetiroController(ArrayList<Alumno> alumnos, ArrayList<Curso> cursos, ArrayList<Matricula> matriculas, ArrayList<Retiro> retiros) {
+		view = new AddRetiro();
 		this.listaAlumnos = alumnos;
 		this.listaCursos= cursos;
 		this.listaMatriculas = matriculas;
@@ -30,19 +31,20 @@ public class AddMatriculaController {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				Matricula m = getMatricula();
-				if (getCurso(m.getCodCurso())!=null) {
-					if (getAlumno(m.getCodAlumno())!=null) {
-						listaMatriculas.add(m);
-						JOptionPane.showMessageDialog(view, "Matricula agregada con exito");
-						AddMatriculaController fr = new AddMatriculaController(listaAlumnos, listaCursos, listaMatriculas, listaRetiros);
+				Retiro r = getRetiro();
+				Matricula m = getMatricula(r.getNumMatricula());
+				if (m!=null) {
+					if (setRetiroAlumno(m.getCodAlumno())) {
+						listaRetiros.add(r);
+						JOptionPane.showMessageDialog(view, "Alumno registrado con exito");		
+						AddRetiroController fr = new AddRetiroController(listaAlumnos, listaCursos, listaMatriculas, listaRetiros);
 						view.dispose();
 						fr.run();
 					} else {
-						JOptionPane.showMessageDialog(view, "Alumno ionexistente o ya matriculado");											
+						JOptionPane.showMessageDialog(view, "El alumno ya estaba retirado");												
 					}
 				} else {
-					JOptionPane.showMessageDialog(view, "Curso ionexistente");						
+					JOptionPane.showMessageDialog(view, "No existe esa matricula");
 				}
 			}
             
@@ -106,33 +108,28 @@ public class AddMatriculaController {
 		this.view.setLocationRelativeTo(null);
         this.view.setVisible(true);
 	}
-	private Matricula getMatricula() {
+	private Retiro getRetiro() {
 		int code = Integer.parseInt(this.view.lblCode.getText());
 		String fecha = this.view.lblDate.getText();
 		String hora = this.view.lblHour.getText();
-		int alumno = Integer.parseInt(this.view.txtAlumno.getText());
-		int curso = Integer.parseInt(this.view.txtCurso.getText());
-		return new Matricula(code, alumno, curso, fecha, hora);
+		int matricula = Integer.parseInt(this.view.txtMatricula.getText());
+		return new Retiro(code, matricula, fecha, hora);
 	}
-	private Alumno getAlumno(int cod) {
-		for (Alumno a : listaAlumnos) {
-			if (a.getCodAlumno() == cod) {	
-				if (a.getEstado() != 1) {
-					a.setEstado(1);
-					return a;				
-				} else {
-					return null;
-				}
-			}
-		}		
-		return null;
-	}
-	private Curso getCurso(int cod) {
-		for (Curso c : listaCursos) {
-			if (c.getCodCurso() == cod) {
-				return c;
+	private Matricula getMatricula(int codMatricula) {
+		for (Matricula m : listaMatriculas) {
+			if (m.getNumMatricula() == codMatricula) {
+				return m;
 			}
 		}
 		return null;
+	}
+	private boolean setRetiroAlumno(int codigo) {
+		for (Alumno a : listaAlumnos) {
+			if (a.getCodAlumno() == codigo && a.getEstado()!=2) {
+				a.setEstado(2);
+				return true;
+			}
+		}
+		return false;
 	}
 }
