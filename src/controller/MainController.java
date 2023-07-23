@@ -90,7 +90,9 @@ public class MainController {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
+				AddRetiroController fr = new AddRetiroController(listaAlumnos, listaCursos, listaMatriculas, listaRetiros);
+				view.dispose();
+				fr.run();
 			}           
 		});
 		this.view.updateRetiro.addActionListener( new ActionListener() {
@@ -99,6 +101,16 @@ public class MainController {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				
+			}           
+		});
+		this.view.consultarMenu.addActionListener( new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ConsultasController fr = new ConsultasController(listaAlumnos, listaCursos, listaMatriculas, listaRetiros);
+				view.dispose();
+				fr.run();
 			}           
 		});
 	}

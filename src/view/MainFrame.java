@@ -20,10 +20,6 @@ import javax.swing.JMenu;
 public class MainFrame extends JFrame {
 
 	private JPanel contentPane;
-	public JButton btnMantenimiento;
-	public JButton btnRegistro;
-	public JButton btnConsulta;
-	public JButton btnReporte;
 	
 	public JMenuItem addAlumno;
 	public JMenuItem addCurso;
@@ -34,6 +30,8 @@ public class MainFrame extends JFrame {
 	public JMenuItem addRetiro;
 	public JMenuItem updateMatricula;
 	public JMenuItem updateRetiro;
+	
+	public JMenuItem consultarMenu;
 	
 
 	/**
@@ -63,38 +61,6 @@ public class MainFrame extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		JPanel panel = new JPanel();
-		panel.setBorder(new CompoundBorder());
-		panel.setBounds(230, 11, 194, 239);
-		contentPane.add(panel);
-		panel.setLayout(null);
-		
-		JLabel lblNewLabel = new JLabel("Módulos");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("Verdana", Font.BOLD, 15));
-		lblNewLabel.setBounds(10, 11, 182, 20);
-		panel.add(lblNewLabel);
-		
-		this.btnMantenimiento = new JButton("Mantenimiento");
-		btnMantenimiento.setBounds(48, 59, 117, 23);
-		panel.add(btnMantenimiento);
-		
-		this.btnRegistro = new JButton("Registro");
-		btnRegistro.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnRegistro.setBounds(48, 108, 117, 23);
-		panel.add(btnRegistro);
-		
-		this.btnConsulta = new JButton("Consulta");
-		btnConsulta.setBounds(48, 156, 117, 23);
-		panel.add(btnConsulta);
-		
-		this.btnReporte = new JButton("Reporte");
-		btnReporte.setBounds(48, 205, 117, 23);
-		panel.add(btnReporte);
 		
 		JLabel lblNewLabel_1 = new JLabel("REGISTRO");
 		lblNewLabel_1.setFont(new Font("Verdana", Font.BOLD | Font.ITALIC, 20));
@@ -171,5 +137,11 @@ public class MainFrame extends JFrame {
 		
 		updateRetiro = new JMenuItem("Retiro");
 		mnNewMenu_3_1.add(updateRetiro);
+		
+		JMenu mnNewMenu_4 = new JMenu("Consultar");
+		menuBar.add(mnNewMenu_4);
+		
+		consultarMenu = new JMenuItem("Consultar");
+		mnNewMenu_4.add(consultarMenu);
 	}
 }
