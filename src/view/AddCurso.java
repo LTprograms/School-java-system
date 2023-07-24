@@ -22,19 +22,21 @@ public class AddCurso extends JFrame {
 	public JTextField txtCreditos;
 	public JTextField txtHoras;
 	public JButton btnRegistrar; 
-	private JMenuBar menuBar;
-	private JMenu mnNewMenu;
-	private JMenu mnNewMenu_1;
-	private JMenu mnNewMenu_2;
-	private JMenu mnNewMenu_3;
 	public JMenuItem addAlumno;
 	public JMenuItem addCurso;
 	public JMenuItem updateAlumno;
 	public JMenuItem updateCurso;
+	
 	public JMenuItem addMatricula;
 	public JMenuItem addRetiro;
 	public JMenuItem updateMatricula;
 	public JMenuItem updateRetiro;
+	
+	public JMenuItem consultarMenu;
+	
+	public JMenuItem pendientes;
+	public JMenuItem vigentes;
+	public JMenuItem cursosMatriculas;
 	/**
 	 * Launch the application.
 	 */
@@ -162,6 +164,24 @@ public class AddCurso extends JFrame {
 		
 		updateRetiro = new JMenuItem("Retiro");
 		mnNewMenu_3_1.add(updateRetiro);
+		
+		JMenu mnNewMenu_4 = new JMenu("Consultar");
+		menuBar.add(mnNewMenu_4);
+		
+		consultarMenu = new JMenuItem("Consultar");
+		mnNewMenu_4.add(consultarMenu);
+		
+		JMenu mnNewMenu_5 = new JMenu("Reporte");
+		menuBar.add(mnNewMenu_5);
+		
+		pendientes = new JMenuItem("Matriculas pendientes");
+		mnNewMenu_5.add(pendientes);
+		
+		vigentes = new JMenuItem("Matriculas vigentes");
+		mnNewMenu_5.add(vigentes);
+		
+		cursosMatriculas = new JMenuItem("Matriculas por curso");
+		mnNewMenu_5.add(cursosMatriculas);
 	}
 
 }

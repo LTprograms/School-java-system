@@ -27,6 +27,13 @@ public class ConsultarMatriculas extends JFrame {
 	public JMenuItem addRetiro;
 	public JMenuItem updateMatricula;
 	public JMenuItem updateRetiro;
+	
+	public JMenuItem consultarMenu;
+	
+	public JMenuItem pendientes;
+	public JMenuItem vigentes;
+	public JMenuItem cursosMatriculas;
+	
 	private JScrollPane scrollPane;
 	public JTable table;
 	private JLabel lblNewLabel;
@@ -107,6 +114,24 @@ public class ConsultarMatriculas extends JFrame {
 		
 		updateRetiro = new JMenuItem("Retiro");
 		mnNewMenu_3_1.add(updateRetiro);
+		
+		JMenu mnNewMenu_4 = new JMenu("Consultar");
+		menuBar.add(mnNewMenu_4);
+		
+		consultarMenu = new JMenuItem("Consultar");
+		mnNewMenu_4.add(consultarMenu);
+		
+		JMenu mnNewMenu_5 = new JMenu("Reporte");
+		menuBar.add(mnNewMenu_5);
+		
+		pendientes = new JMenuItem("Matriculas pendientes");
+		mnNewMenu_5.add(pendientes);
+		
+		vigentes = new JMenuItem("Matriculas vigentes");
+		mnNewMenu_5.add(vigentes);
+		
+		cursosMatriculas = new JMenuItem("Matriculas por curso");
+		mnNewMenu_5.add(cursosMatriculas);
 		
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 79, 414, 171);

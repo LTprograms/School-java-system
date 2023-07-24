@@ -16,7 +16,7 @@ import javax.swing.border.EmptyBorder;
 
 public class ConsultarRetiro extends JFrame {
 
-private JPanel contentPane;
+	private JPanel contentPane;
 	
 	public JMenuItem addAlumno;
 	public JMenuItem addCurso;
@@ -27,10 +27,18 @@ private JPanel contentPane;
 	public JMenuItem addRetiro;
 	public JMenuItem updateMatricula;
 	public JMenuItem updateRetiro;
-	private JScrollPane scrollPane;
-	public JTable table;
+	
+	public JMenuItem consultarMenu;
+	
+	public JMenuItem pendientes;
+	public JMenuItem vigentes;
+	public JMenuItem cursosMatriculas;
+	
 	private JLabel lblNewLabel;
-	public JTextField txtCodigo;
+	private JScrollPane scrollPane_1;
+	public JTable table;
+	private JLabel lblNewLabel_1;
+	public JTextField txtCode;
 	public JButton btnModificar;
 	public JButton btnEliminar;
 
@@ -108,28 +116,46 @@ private JPanel contentPane;
 		updateRetiro = new JMenuItem("Retiro");
 		mnNewMenu_3_1.add(updateRetiro);
 		
-		scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 79, 414, 171);
-		contentPane.add(scrollPane);
+		JMenu mnNewMenu_4 = new JMenu("Consultar");
+		menuBar.add(mnNewMenu_4);
+		
+		consultarMenu = new JMenuItem("Consultar");
+		mnNewMenu_4.add(consultarMenu);
+		
+		JMenu mnNewMenu_5 = new JMenu("Reporte");
+		menuBar.add(mnNewMenu_5);
+		
+		pendientes = new JMenuItem("Matriculas pendientes");
+		mnNewMenu_5.add(pendientes);
+		
+		vigentes = new JMenuItem("Matriculas vigentes");
+		mnNewMenu_5.add(vigentes);
+		
+		cursosMatriculas = new JMenuItem("Matriculas por curso");
+		mnNewMenu_5.add(cursosMatriculas);
+		
+		scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(10, 85, 414, 154);
+		contentPane.add(scrollPane_1);
 		
 		table = new JTable();
-		scrollPane.setViewportView(table);
+		scrollPane_1.setViewportView(table);
 		
-		lblNewLabel = new JLabel("Codigo:");
-		lblNewLabel.setBounds(10, 52, 46, 14);
-		contentPane.add(lblNewLabel);
+		lblNewLabel_1 = new JLabel("Codigo:");
+		lblNewLabel_1.setBounds(10, 46, 61, 14);
+		contentPane.add(lblNewLabel_1);
 		
-		txtCodigo = new JTextField();
-		txtCodigo.setBounds(66, 49, 114, 20);
-		contentPane.add(txtCodigo);
-		txtCodigo.setColumns(10);
+		txtCode = new JTextField();
+		txtCode.setBounds(59, 43, 130, 20);
+		contentPane.add(txtCode);
+		txtCode.setColumns(10);
 		
 		btnModificar = new JButton("Modificar");
-		btnModificar.setBounds(203, 48, 89, 23);
+		btnModificar.setBounds(210, 42, 89, 23);
 		contentPane.add(btnModificar);
 		
 		btnEliminar = new JButton("Eliminar");
-		btnEliminar.setBounds(319, 48, 89, 23);
+		btnEliminar.setBounds(321, 42, 89, 23);
 		contentPane.add(btnEliminar);
 	}
 

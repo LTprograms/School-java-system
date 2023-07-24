@@ -72,7 +72,7 @@ public class ConsultasController {
 				}
 			}           
 		});
-		/*this.view.addAlumno.addActionListener( new ActionListener() {
+		this.view.addAlumno.addActionListener( new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -145,12 +145,15 @@ public class ConsultasController {
 				fr.run();
 			}           
 		});
+
 		this.view.updateRetiro.addActionListener( new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
+				ConsultarRetiroController fr = new ConsultarRetiroController(listaAlumnos, listaCursos, listaMatriculas, listaRetiros);
+				view.dispose();
+				fr.run();
 			}           
 		});
 		this.view.consultarMenu.addActionListener( new ActionListener() {
@@ -158,9 +161,42 @@ public class ConsultasController {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				ConsultasController fr = new ConsultasController(listaAlumnos, listaCursos, listaMatriculas, listaRetiros);
+				view.dispose();
+				fr.run();
+			}           
+		});
+		this.view.pendientes.addActionListener( new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ReporteAlumnosController fr = new ReporteAlumnosController(listaAlumnos, listaCursos, listaMatriculas, listaRetiros, 1);
+				view.dispose();
+				fr.run(); 
 				
 			}           
-		});*/
+		});
+		this.view.vigentes.addActionListener( new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ReporteAlumnosController fr = new ReporteAlumnosController(listaAlumnos, listaCursos, listaMatriculas, listaRetiros, 2);
+				view.dispose();
+				fr.run(); 
+			}           
+		});
+		this.view.cursosMatriculas.addActionListener( new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ReporteAlumnosController fr = new ReporteAlumnosController(listaAlumnos, listaCursos, listaMatriculas, listaRetiros, 3);
+				view.dispose();
+				fr.run(); 
+			}           
+		});
 		
 		
 	}

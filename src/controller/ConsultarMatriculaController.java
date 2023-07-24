@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import model.Alumno;
@@ -25,6 +26,31 @@ public class ConsultarMatriculaController {
 		this.listaMatriculas = matriculas;
 		this.listaRetiros = retiros;
 		fillTable();
+		this.view.btnEliminar.addActionListener( new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				int cod = Integer.parseInt(view.txtCodigo.getText());
+				Matricula m = getMatricula(cod);
+				if (m != null) {
+					Alumno a = getAlumno(m.getCodAlumno());
+					if (a.getEstado() != 2) {
+						if (JOptionPane.showConfirmDialog(view, "¿Deseas eliminar esta matricula?")==JOptionPane.YES_OPTION) {
+							deleteMatricula(m, a);
+							ConsultarMatriculaController fr = new ConsultarMatriculaController(listaAlumnos, listaCursos, listaMatriculas, listaRetiros);
+							view.dispose();
+							fr.run();
+						}						
+					} else {
+						JOptionPane.showMessageDialog(view, "No se puede eliminar esta matricula");						
+					}
+				} else {
+					JOptionPane.showMessageDialog(view, "La matricula no existe");
+				}
+			}
+            
+        });
 		this.view.addAlumno.addActionListener( new ActionListener() {
 
 			@Override
@@ -78,6 +104,77 @@ public class ConsultarMatriculaController {
 				fr.run();
 			}           
         });
+		this.view.updateMatricula.addActionListener( new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ConsultarMatriculaController fr = new ConsultarMatriculaController(listaAlumnos, listaCursos, listaMatriculas, listaRetiros);
+				view.dispose();
+				fr.run();
+			}           
+        });
+		this.view.addRetiro.addActionListener( new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				AddRetiroController fr = new AddRetiroController(listaAlumnos, listaCursos, listaMatriculas, listaRetiros);
+				view.dispose();
+				fr.run();
+			}           
+		});
+		this.view.updateRetiro.addActionListener( new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ConsultarRetiroController fr = new ConsultarRetiroController(listaAlumnos, listaCursos, listaMatriculas, listaRetiros);
+				view.dispose();
+				fr.run();
+			}           
+		});
+		this.view.consultarMenu.addActionListener( new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ConsultasController fr = new ConsultasController(listaAlumnos, listaCursos, listaMatriculas, listaRetiros);
+				view.dispose();
+				fr.run();
+			}           
+		});
+		this.view.pendientes.addActionListener( new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ReporteAlumnosController fr = new ReporteAlumnosController(listaAlumnos, listaCursos, listaMatriculas, listaRetiros, 1);
+				view.dispose();
+				fr.run(); 
+				
+			}           
+		});
+		this.view.vigentes.addActionListener( new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ReporteAlumnosController fr = new ReporteAlumnosController(listaAlumnos, listaCursos, listaMatriculas, listaRetiros, 2);
+				view.dispose();
+				fr.run(); 
+			}           
+		});
+		this.view.cursosMatriculas.addActionListener( new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ReporteAlumnosController fr = new ReporteAlumnosController(listaAlumnos, listaCursos, listaMatriculas, listaRetiros, 3);
+				view.dispose();
+				fr.run(); 
+			}           
+		});
 	}
 	public void run() {
 		this.view.setLocationRelativeTo(null);
@@ -94,5 +191,36 @@ public class ConsultarMatriculaController {
         	model.addRow(new Object[] {m.getNumMatricula(), m.getCodAlumno(), m.getCodCurso(), m.getFecha(), m.getHora()});
         }
         this.view.table.setModel(model);
+	}
+	public Matricula getMatricula(int cod) {
+		for (Matricula m : listaMatriculas) {
+			if (m.getNumMatricula() == cod) {
+				return m;
+			}
+		}	
+		return null;
+	}
+	private Alumno getAlumno(int cod) {
+		for (Alumno a : listaAlumnos) {
+			if (a.getCodAlumno() == cod) {
+				return a;
+			}
+		}
+		return null;
+	}
+	private void deleteMatricula (Matricula m, Alumno a) {
+		int index = 0;
+		for (Matricula matricula : listaMatriculas) {
+			if (m.getNumMatricula() == m.getNumMatricula()) {
+				break;
+			}
+			index++;
+		}
+		listaMatriculas.remove(index);
+		for (Alumno alumno : listaAlumnos) {
+			if (alumno.getCodAlumno() == a.getCodAlumno()) {
+				alumno.setEstado(0);
+			}
+		}
 	}
 }

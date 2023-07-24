@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import model.Alumno;
@@ -25,15 +26,30 @@ public class ConsultarCursoController {
 		this.listaMatriculas = matriculas;
 		this.listaRetiros = retiros;
 		fillTable();
-		/*this.view.btnRegistrar.addActionListener( new ActionListener() {
+		this.view.btnEliminar.addActionListener( new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
+				int code = Integer.parseInt(view.txtCode.getText());
+				Curso c = getCurso(code);
+				if (c != null) {
+					if (!isMatriculado(c)) {
+						if (JOptionPane.showConfirmDialog(view, "¿Deseas eliminar este curso?")==JOptionPane.YES_OPTION) {
+							deleteCurso(c);
+							ConsultarCursoController fr = new ConsultarCursoController(listaAlumnos, listaCursos, listaMatriculas, listaRetiros);
+							view.dispose();
+							fr.run();
+						}						
+					} else {
+						JOptionPane.showMessageDialog(view, "No se puede eliminar el curso");						
+					}
+				}else {
+					JOptionPane.showMessageDialog(view, "El curso no existe");
+				}
 			}
             
-        });*/
+        });
 		this.view.addAlumno.addActionListener( new ActionListener() {
 
 			@Override
@@ -75,9 +91,97 @@ public class ConsultarCursoController {
 				ConsultarCursoController fr = new ConsultarCursoController(listaAlumnos, listaCursos, listaMatriculas, listaRetiros);
 				view.dispose();
 				fr.run();
-			}
-            
+			}           
         });
+		this.view.addMatricula.addActionListener( new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				AddMatriculaController fr = new AddMatriculaController(listaAlumnos, listaCursos, listaMatriculas, listaRetiros);
+				view.dispose();
+				fr.run();
+			}           
+        });
+		this.view.updateMatricula.addActionListener( new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ConsultarMatriculaController fr = new ConsultarMatriculaController(listaAlumnos, listaCursos, listaMatriculas, listaRetiros);
+				view.dispose();
+				fr.run();
+			}           
+        });
+		this.view.addRetiro.addActionListener( new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				AddRetiroController fr = new AddRetiroController(listaAlumnos, listaCursos, listaMatriculas, listaRetiros);
+				view.dispose();
+				fr.run();
+			}           
+		});
+
+		this.view.updateRetiro.addActionListener( new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ConsultarRetiroController fr = new ConsultarRetiroController(listaAlumnos, listaCursos, listaMatriculas, listaRetiros);
+				view.dispose();
+				fr.run();
+			}           
+		});this.view.updateRetiro.addActionListener( new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}           
+		});
+		this.view.consultarMenu.addActionListener( new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ConsultasController fr = new ConsultasController(listaAlumnos, listaCursos, listaMatriculas, listaRetiros);
+				view.dispose();
+				fr.run();
+			}           
+		});
+		this.view.pendientes.addActionListener( new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ReporteAlumnosController fr = new ReporteAlumnosController(listaAlumnos, listaCursos, listaMatriculas, listaRetiros, 1);
+				view.dispose();
+				fr.run(); 
+				
+			}           
+		});
+		this.view.vigentes.addActionListener( new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ReporteAlumnosController fr = new ReporteAlumnosController(listaAlumnos, listaCursos, listaMatriculas, listaRetiros, 2);
+				view.dispose();
+				fr.run(); 
+			}           
+		});
+		this.view.cursosMatriculas.addActionListener( new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ReporteAlumnosController fr = new ReporteAlumnosController(listaAlumnos, listaCursos, listaMatriculas, listaRetiros, 3);
+				view.dispose();
+				fr.run(); 
+			}           
+		});
 	}
 	public void run() {
 		this.view.setLocationRelativeTo(null);
@@ -94,5 +198,31 @@ public class ConsultarCursoController {
         	model.addRow(new Object[] {c.getCodCurso(), c.getAsignatura(), c.getCiclo(), c.getCreditos(), c.getHoras()});
         }
         this.view.table.setModel(model);
+	}
+	private Curso getCurso(int code) {
+		for (Curso c : listaCursos) {
+			if (c.getCodCurso() == code) {
+				return c;
+			}
+		}
+		return null;
+	}
+	private void deleteCurso (Curso c) {
+		int index = 0;
+		for (Curso curso : listaCursos) {
+			if (c.getCodCurso() == curso.getCodCurso()) {
+				break;
+			}
+			index++;
+		}
+		listaCursos.remove(index);
+	}
+	private boolean isMatriculado(Curso c) {
+		for (Matricula m : listaMatriculas) {
+			if (m.getCodCurso() == c.getCodCurso()) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

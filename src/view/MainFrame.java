@@ -33,6 +33,10 @@ public class MainFrame extends JFrame {
 	
 	public JMenuItem consultarMenu;
 	
+	public JMenuItem pendientes;
+	public JMenuItem vigentes;
+	public JMenuItem cursosMatriculas;
+	
 
 	/**
 	 * Launch the application.
@@ -143,5 +147,17 @@ public class MainFrame extends JFrame {
 		
 		consultarMenu = new JMenuItem("Consultar");
 		mnNewMenu_4.add(consultarMenu);
+		
+		JMenu mnNewMenu_5 = new JMenu("Reporte");
+		menuBar.add(mnNewMenu_5);
+		
+		pendientes = new JMenuItem("Matriculas pendientes");
+		mnNewMenu_5.add(pendientes);
+		
+		vigentes = new JMenuItem("Matriculas vigentes");
+		mnNewMenu_5.add(vigentes);
+		
+		cursosMatriculas = new JMenuItem("Matriculas por curso");
+		mnNewMenu_5.add(cursosMatriculas);
 	}
 }
