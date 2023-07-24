@@ -35,11 +35,12 @@ public class AddMatriculaController {
 					if (getAlumno(m.getCodAlumno())!=null) {
 						listaMatriculas.add(m);
 						JOptionPane.showMessageDialog(view, "Matricula agregada con exito");
+						Matricula.setIndex();
 						AddMatriculaController fr = new AddMatriculaController(listaAlumnos, listaCursos, listaMatriculas, listaRetiros);
 						view.dispose();
 						fr.run();
 					} else {
-						JOptionPane.showMessageDialog(view, "Alumno ionexistente o ya matriculado");											
+						JOptionPane.showMessageDialog(view, "Alumno inexistente o ya matriculado");											
 					}
 				} else {
 					JOptionPane.showMessageDialog(view, "Curso ionexistente");						

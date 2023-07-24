@@ -169,12 +169,14 @@ public class ReporteAlumnosController {
         	model.addColumn("Celular");
         	model.addColumn("Estado");
         	if(type==1) { // registradas
+        		view.lbTitulo.setText("Matriculas pendientes");
         		for (Alumno a : this.listaAlumnos) {
         			if (a.getEstado() == 0) {
         				model.addRow(new Object[] {a.getCodAlumno(), a.getDni(), a.getApellidos(), a.getNombres(), a.getEdad(), a.getCelular(), a.getEstado()});        				
         			}
         		}        		
         	} else {
+        		view.lbTitulo.setText("Matriculas vigentes");
         		for (Alumno a : this.listaAlumnos) {
         			if (a.getEstado() == 1) {
         				model.addRow(new Object[] {a.getCodAlumno(), a.getDni(), a.getApellidos(), a.getNombres(), a.getEdad(), a.getCelular(), a.getEstado()});        				
@@ -182,6 +184,7 @@ public class ReporteAlumnosController {
         		}        		        		
         	}
         } else {
+        	view.lbTitulo.setText("Matriculados por curso");
         	ArrayList<String> asignaturas = new ArrayList<>();
             for (Curso curso : listaCursos) {
                 asignaturas.add(curso.getAsignatura());

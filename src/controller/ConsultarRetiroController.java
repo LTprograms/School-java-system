@@ -54,6 +54,31 @@ public class ConsultarRetiroController {
 			}
             
         });
+		this.view.btnModificar.addActionListener( new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				int cod = Integer.parseInt(view.txtCode.getText());
+				Retiro r = getRetiro(cod);
+				if (r != null) {
+					int code = Integer.parseInt(JOptionPane.showInputDialog(view, "Nuevo curso: "));
+					for (Matricula matricula : listaMatriculas) {
+						if (matricula.getNumMatricula() == r.getNumMatricula()) {
+							matricula.setCodCurso(code);
+							break;
+						}
+					}
+					JOptionPane.showMessageDialog(view, "Retiro actualizado con  exito");
+					ConsultarRetiroController fr = new ConsultarRetiroController(listaAlumnos, listaCursos, listaMatriculas, listaRetiros);
+					view.dispose();
+					fr.run();
+				} else {
+					JOptionPane.showMessageDialog(view, "El retiro no existe");
+				}
+			}
+            
+        });
 		this.view.addAlumno.addActionListener( new ActionListener() {
 
 			@Override

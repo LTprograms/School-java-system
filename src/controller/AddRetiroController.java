@@ -37,6 +37,7 @@ public class AddRetiroController {
 					if (setRetiroAlumno(m.getCodAlumno())) {
 						listaRetiros.add(r);
 						JOptionPane.showMessageDialog(view, "Alumno registrado con exito");		
+						Retiro.setIndex();
 						AddRetiroController fr = new AddRetiroController(listaAlumnos, listaCursos, listaMatriculas, listaRetiros);
 						view.dispose();
 						fr.run();

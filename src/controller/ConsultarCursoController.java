@@ -50,6 +50,23 @@ public class ConsultarCursoController {
 			}
             
         });
+		this.view.btnModificar.addActionListener( new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				int cod = Integer.parseInt(view.txtCode.getText());
+				Curso c = getCurso(cod);
+				if (c != null) {
+					ModificarCursoController fr = new ModificarCursoController(listaAlumnos, listaCursos, listaMatriculas, listaRetiros, c);
+					view.dispose();
+					fr.run(); 					
+				} else {
+					JOptionPane.showMessageDialog(view, "El curso no existe");
+				}
+			}
+            
+        });
 		this.view.addAlumno.addActionListener( new ActionListener() {
 
 			@Override

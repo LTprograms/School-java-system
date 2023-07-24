@@ -51,6 +51,31 @@ public class ConsultarMatriculaController {
 			}
             
         });
+		this.view.btnModificar.addActionListener( new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				int cod = Integer.parseInt(view.txtCodigo.getText());
+				Matricula m = getMatricula(cod);
+				if (m != null) {
+					int code = Integer.parseInt(JOptionPane.showInputDialog(view, "Nuevo curso: "));
+					for (Matricula matricula : listaMatriculas) {
+						if (matricula.getNumMatricula() == m.getNumMatricula()) {
+							matricula.setCodCurso(code);
+							break;
+						}
+					}
+					JOptionPane.showMessageDialog(view, "Matricula actualizada con  exito");
+					ConsultarMatriculaController fr = new ConsultarMatriculaController(listaAlumnos, listaCursos, listaMatriculas, listaRetiros);
+					view.dispose();
+					fr.run();
+				} else {
+					JOptionPane.showMessageDialog(view, "La matricula no existe");
+				}
+			}
+            
+        });
 		this.view.addAlumno.addActionListener( new ActionListener() {
 
 			@Override

@@ -8,7 +8,7 @@ public class Alumno {
 	private int edad;
 	private int celular;
 	private int estado;
-	private static int index = 11;
+	private static int index = 1;
 	public Alumno(int codAlumno, String nombres, String apellidos, String dni, int edad, int celular, int estado) {
 		this.codAlumno = codAlumno;
 		this.nombres = nombres;

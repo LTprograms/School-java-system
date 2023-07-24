@@ -176,12 +176,24 @@ public class AddCursoController {
 	}
 	
 	private boolean addCurso(Curso curso) {
+		int index = 0;
 		for (Curso c : this.listaCursos) {
 			if (c.getCodCurso() == curso.getCodCurso()) {
 				return false;
 			}
+			if (c.getCodCurso() < curso.getCodCurso()) {
+				index++;
+			}
 		}
-		this.listaCursos.add(curso);
+		ArrayList<Curso> aux = new ArrayList<>();
+		for (int i = 0; i<index; i++) {
+			aux.add(listaCursos.get(i));
+		}
+		aux.add(curso);
+		for (int i = index; i<listaCursos.size(); i++) {
+			aux.add(listaCursos.get(i));
+		}
+		this.listaCursos = aux;
 		return true;
 	}
 	
